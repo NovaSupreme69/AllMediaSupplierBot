@@ -28,7 +28,7 @@ dispatcher = updater.dispatcher
 # Webhook URL for Render
 HEROKU_APP_NAME = "allmediasupplierbot"  # Replace this with your Render app name
 PORT = int(os.environ.get('PORT', '8443'))  # Port number for Rende
-webhook_url = f"https://{allmediasupplierbot}.onrender.com/{updater.bot.token}"
+webhook_url = f"https://allmediasupplierbot.onrender.com/{updater.bot.token}"
 # Set the webhook
 updater.start_webhook(listen="0.0.0.0",
                         port=PORT,
