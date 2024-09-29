@@ -21,6 +21,7 @@ MEDIA_SOURCE_URLS = {
     "movie": "https://123anime.info/home",  
     "music": "https://streamsquid.com/#/browse/newrel"  
 }
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 def fetch_media(media_type: str, name: str):
     """
@@ -226,7 +227,7 @@ app = Flask(__name__)
 
 def main():
     # Initialize the Updater and Dispatcher for the bot
-    updater = Updater("Y7534687871:AAHJqUKnNdB4JLGsDnc3miajomFu-VqEGFQ", use_context=True)
+    updater = Updater(BOT_TOKEN, use_context=True)
     dispatcher = updater.dispatcher
 
     # Register command handlers as before
