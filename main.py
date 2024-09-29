@@ -23,9 +23,8 @@ MEDIA_SOURCE_URLS = {
 }
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
-# Initialize the Updater and Dispatcher for the bot
-    updater = Updater(BOT_TOKEN, use_context=True)
-    dispatcher = updater.dispatcher
+updater = Updater(BOT_TOKEN, use_context=True)
+dispatcher = updater.dispatcher
 
 def fetch_media(media_type: str, name: str):
     """
