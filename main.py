@@ -25,7 +25,15 @@ MEDIA_SOURCE_URLS = {
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 updater = Updater(BOT_TOKEN, use_context=True)
 dispatcher = updater.dispatcher
-
+# Webhook URL for Render
+HEROKU_APP_NAME = "allmediasupplierbot"  # Replace this with your Render app name
+PORT = int(os.environ.get('PORT', '8443'))  # Port number for Rende
+webhook_url = f"https://{allmediasupplierbot}.onrender.com/{updater.bot.token}"
+# Set the webhook
+updater.start_webhook(listen="0.0.0.0",
+                        port=PORT,
+                        url_path=updater.bot.token,
+                        webhook_url=webhook_url)
 def fetch_media(media_type: str, name: str):
     """
     Downloads media to Render's server and returns the path.
@@ -243,19 +251,6 @@ def main():
     dispatcher.add_handler(CommandHandler("movie", movie))
     dispatcher.add_handler(CommandHandler("music", music))
     dispatcher.add_handler(CallbackQueryHandler(button_handler))
-
-    # Webhook URL for Render
-    HEROKU_APP_NAME = "allmediasupplierbot"  # Replace this with your Render app name
-    PORT = int(os.environ.get('PORT', '8443'))  # Port number for Render
-
-    webhook_url = f"https://{allmediasupplierbot}.onrender.com/{updater.bot.token}"
-
-    # Set the webhook
-    updater.start_webhook(listen="0.0.0.0",
-                          port=PORT,
-                          url_path=updater.bot.token,
-                          webhook_url=webhook_url)
-
     # Start Flask app
     app.run(port=PORT, debug=True)
 
